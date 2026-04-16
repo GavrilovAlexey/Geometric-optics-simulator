@@ -25,8 +25,8 @@ class ThinLens(BaseObject):
 
         self.points = [Point(self.a.copy()), Point(self.b.copy())]
         self.sliders = [Slider(array([-6, -8]), array([6, 1.5]), refractive_index, 1, 3, "n", 2),
-                        Slider(array([2, -8]), array([6, 1.5]), refractive_index, -1, 1, "r1", 1),
-                        Slider(array([10, -8]), array([6, 1.5]), refractive_index, -1, 1, "r2", 1),]
+                        Slider(array([2, -8]), array([6, 1.5]), 1, -1, 1, "r1", 1),
+                        Slider(array([10, -8]), array([6, 1.5]), 1, -1, 1, "r2", 1),]
 
     required_number_of_points = 2
 
