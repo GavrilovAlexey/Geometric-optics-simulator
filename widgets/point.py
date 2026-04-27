@@ -11,10 +11,13 @@ class Point:
         self.activated = False
 
     def update(self, event):
-        from simulator.engine import error
-        from simulator.engine import lower_bound
+        from simulator.engine import error, lower_bound
+        from simulator.interface import creation_panel
+        from simulator.object_classes.medium.add_point import AddPoint
+        from simulator.object_classes.medium.remove_point import RemovePoint
 
-        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+        if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1 and creation_panel.selected_object not in (
+                AddPoint, RemovePoint):
             pos = coordinate_pixels_to_units(array(event.pos))
             self.activated = sum((pos - self.position) ** 2) <= (2 * self.r) ** 2
         elif event.type == pygame.MOUSEMOTION and self.activated:
@@ -27,7 +30,7 @@ class Point:
     def draw(self):
         from main import screen, activated_color, deactivated_color, background_color
 
-        color = deactivated_color  if self.activated else background_color
+        color = deactivated_color if self.activated else background_color
         pygame.draw.circle(screen, color, coordinate_units_to_pixels(self.position), units_to_pixels(self.r))
         pygame.draw.circle(screen, activated_color, coordinate_units_to_pixels(self.position),
                            units_to_pixels(self.r) / 2)
